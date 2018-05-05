@@ -1,15 +1,28 @@
-#include <bits/stdc++.h>
+ #include<bits/stdc++.h>
 using namespace std;
- int main()
- {
-long long n,k,M,D,mx=-1;
-scanf("%lld%lld%lld%lld",&n,&k,&M,&D);
-for(long long int  e=1;e<=D;e++)
-{   long long int   ev=(k*(e-1)+1);
-	long long int  gh=n/ev;
- long long  int y=min( gh,M);
- mx=max(mx,y*e);
-}
-printf("%lld\n",mx);
-
+typedef long long ll;
+int main()
+{
+    ll n,k,m,d,res=0;
+    scanf("%lld%lld%lld%lld",&n,&k,&m,&d);
+    for(ll i=1;i<=d;i++)
+    {
+        ll tl=1,tr=m;
+        while(tl<tr)
+        {
+            ll tm=(tl+tr+1)/2;
+            ll ui=n/tm;
+            long   double bb=(double)ui/k;
+            ll br= bb;
+            if(br!=bb)
+                br=bb+1;
+            if(br<i)
+            tr=tm-1;
+            else tl=tm;
+        }
+        if(((n/tl)+k-1)/k==i)
+            res=max(res,((n/tl)+k-1)/k*tl);
+    }
+    printf("%lld\n",res);
+    return 0;
 }
